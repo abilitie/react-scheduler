@@ -1,4 +1,4 @@
-dist
+#dist
 .vscode
 # dependencies
 /node_modules
@@ -10,7 +10,7 @@ dist
 *.tgz
 
 # production
-/build
+#/build
 
 # misc
 .DS_Store
