@@ -100,7 +100,6 @@ const MonthEvents = ({
           // }
         }
         const topSpace = index * MULTI_DAY_EVENT_HEIGHT + MONTH_NUMBER_HEIGHT;
-
         return index > LIMIT ? (
           ""
         ) : index === LIMIT ? (

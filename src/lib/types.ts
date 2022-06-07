@@ -44,6 +44,7 @@ interface CalendarEvent {
   title: string;
   start: Date;
   end: Date;
+  style?: {}
   // description?: string;
 }
 

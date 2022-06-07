@@ -45,23 +45,32 @@ export const EVENTS = [
   {
     event_id: 7,
     title: "Event 7",
-    start: new Date("2021/5/4 09:00"),
-    end: new Date("2021/5/5 09:20"),
+    start: new Date("2022/6/4 09:00"),
+    end: new Date("2022/6/4 12:00"),
     admin_id: [3],
+    style: {
+      backgroundColor: 'red'
+    }
   },
   {
     event_id: 8,
     title: "Event 8",
-    start: new Date("2021/5/1 13:00"),
-    end: new Date("2021/5/16 14:00"),
+    start: new Date("2022/6/11 13:00"),
+    end: new Date("2022/6/11 14:00"),
     admin_id: [4, 3],
+    style: {
+      backgroundColor: 'purple'
+    }
   },
   {
     event_id: 9,
     title: "Event 9",
-    start: new Date("2021/5/1 10:00"),
-    end: new Date("2021/5/3 11:00"),
+    start: new Date("2022/6/20 10:00"),
+    end: new Date("2022/6/21 11:00"),
     admin_id: [4],
+    style: {
+      backgroundColor: 'lime'
+    }
   },
 
   // {

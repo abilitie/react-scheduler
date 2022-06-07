@@ -273,6 +273,7 @@ const EventItem = ({
             : theme.palette.primary.contrastText,
           cursor: event.disabled ? "not-allowed" : "pointer",
           overflow: "hidden",
+          ...(event.style || {})
         }}
       >
         <ButtonBase
