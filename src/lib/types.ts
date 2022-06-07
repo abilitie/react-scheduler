@@ -134,6 +134,7 @@ export interface SchedulerHelpers {
   onConfirm(event: ProcessedEvent, action: EventActions): void;
 }
 export interface SchedulerProps {
+  onChangeView?: (newView: string) => void
   /**Min height of table
    * @default 600
    */

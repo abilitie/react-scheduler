@@ -45,6 +45,7 @@ const AppState = ({ initial, children }: AppProps) => {
     direction,
     loading,
     onEventDrop,
+    onChangeView,
   } = initial;
   const [state, dispatch] = useReducer(stateReducer, initialState(initial));
 
@@ -52,6 +53,10 @@ const AppState = ({ initial, children }: AppProps) => {
     value: SchedulerState[keyof SchedulerState],
     name: keyof SchedulerState
   ) => {
+    if (onChangeView && name === "view" && typeof value === 'string') {
+      onChangeView(value)
+      return;
+    }
     dispatch({ type: "set", payload: { name, value } });
   };
 
