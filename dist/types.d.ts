@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { DayProps } from "./views/Day";
 import { StateItem } from "./views/Editor";
 import { MonthProps } from "./views/Month";
@@ -20,6 +19,7 @@ interface CalendarEvent {
     title: string;
     start: Date;
     end: Date;
+    style?: {};
 }
 export declare type InputTypes = "input" | "date" | "select" | "hidden";
 export interface FieldInputProps {

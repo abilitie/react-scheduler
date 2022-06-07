@@ -1,4 +1,3 @@
-/// <reference types="react" />
 interface CellProps {
     start: Date;
     end: Date;

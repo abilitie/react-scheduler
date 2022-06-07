@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { CellRenderedProps, DayHours } from "../types";
 import { WeekDays } from "./Month";
 export interface WeekProps {
