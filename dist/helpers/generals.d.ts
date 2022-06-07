@@ -3,7 +3,7 @@ import { DefaultRecourse, FieldProps, ProcessedEvent, ResourceFields, SchedulerP
 import { StateEvent } from "../views/Editor";
 export declare const getOneView: (state: Partial<SchedulerProps>) => View;
 export declare const getAvailableViews: (state: SchedulerProps) => View[];
-export declare const arraytizeFieldVal: (field: FieldProps, val: any, event?: StateEvent) => {
+export declare const arraytizeFieldVal: (field: FieldProps, val: any, event?: StateEvent | undefined) => {
     value: any;
     validity: any;
 };

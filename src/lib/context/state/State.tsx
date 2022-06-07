@@ -55,7 +55,6 @@ const AppState = ({ initial, children }: AppProps) => {
   ) => {
     if (onChangeView && name === "view" && typeof value === 'string') {
       onChangeView(value)
-      return;
     }
     dispatch({ type: "set", payload: { name, value } });
   };

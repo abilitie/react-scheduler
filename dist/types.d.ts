@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import { DayProps } from "./views/Day";
 import { StateItem } from "./views/Editor";
 import { MonthProps } from "./views/Month";
