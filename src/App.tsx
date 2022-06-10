@@ -2,12 +2,16 @@ import { useState } from "react";
 import { EVENTS } from "./model/events";
 // import arSA from "date-fns/locale/ar-SA";
 import { Scheduler } from "./lib/Scheduler";
+// import { View } from './lib/components/nav/Navigation';
 
 const App = () => {
   const [events, setEvents] = useState(EVENTS);
+  // const [liveView, setLiveView] = useState<View>('month');
 
   return (
     <Scheduler
+      onChangeView={(newView: string) => console.log(newView)}
+      // view={liveView}
       dialogMaxWidth="sm"
       // loading={loading}
       // view="month"

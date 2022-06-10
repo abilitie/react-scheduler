@@ -61,6 +61,8 @@ export const defaultProps = {
   fields: [],
   loading: undefined,
   customEditor: undefined,
+  viewerHeaderComponent: undefined,
+  isEditable: false,
   onConfirm: undefined,
   onDelete: undefined,
   viewerExtraComponent: undefined,

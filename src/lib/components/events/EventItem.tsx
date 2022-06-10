@@ -49,6 +49,7 @@ const EventItem = ({
     resourceFields,
     locale,
     viewerTitleComponent,
+    isEditable
   } = useAppState();
   const [anchorEl, setAnchorEl] = useState<Element | null>(null);
   const [deleteConfirm, setDeleteConfirm] = useState(false);
@@ -142,6 +143,79 @@ const EventItem = ({
     );
   }
 
+  const TitleRow = () => <div
+      style={{
+        background: event.color || theme.palette.primary.main,
+        color: theme.palette.primary.contrastText,
+      }}
+  >
+    <div className="rs__popper_actions" style={{ justifyContent: !isEditable ? 'flex-end' : undefined }}>
+      <div>
+        <IconButton
+            size="small"
+            style={{ color: theme.palette.primary.contrastText }}
+            onClick={() => {
+              triggerViewer();
+            }}
+        >
+          <ClearRoundedIcon color="disabled" />
+        </IconButton>
+      </div>
+      <div style={{ display: "inherit" }}>
+        {
+          isEditable &&
+          <>
+            <IconButton
+              size="small"
+              style={{ color: theme.palette.primary.contrastText }}
+              onClick={() => {
+                triggerViewer();
+                triggerDialog(true, event);
+              }}
+            >
+              <EditRoundedIcon />
+            </IconButton>
+          {!deleteConfirm && (
+            <IconButton
+            size="small"
+            style={{ color: theme.palette.primary.contrastText }}
+            onClick={() => setDeleteConfirm(true)}
+            >
+              <DeleteRoundedIcon />
+            </IconButton>
+          )}
+          </>
+        }
+        <Slide
+            in={deleteConfirm}
+            direction={direction === "rtl" ? "right" : "left"}
+            mountOnEnter
+            unmountOnExit
+        >
+          <div>
+            <Button
+                style={{ color: theme.palette.error.main }}
+                size="small"
+                onClick={handleConfirmDelete}
+            >
+              DELETE
+            </Button>
+            <Button
+                style={{ color: theme.palette.action.disabled }}
+                size="small"
+                onClick={() => setDeleteConfirm(false)}
+            >
+              CANCEL
+            </Button>
+          </div>
+        </Slide>
+      </div>
+    </div>
+    <Typography style={{ padding: "5px 0" }} noWrap>
+      {event.title}
+    </Typography>
+  </div>
+
   const renderViewer = () => {
     const idKey = resourceFields.idField;
     const hasResource = resources.filter((res) =>
@@ -152,77 +226,14 @@ const EventItem = ({
 
     return (
       <PopperInner>
-        <div
-          style={{
-            background: event.color || theme.palette.primary.main,
-            color: theme.palette.primary.contrastText,
-          }}
-        >
-          <div className="rs__popper_actions">
-            <div>
-              <IconButton
-                size="small"
-                style={{ color: theme.palette.primary.contrastText }}
-                onClick={() => {
-                  triggerViewer();
-                }}
-              >
-                <ClearRoundedIcon color="disabled" />
-              </IconButton>
-            </div>
-            <div style={{ display: "inherit" }}>
-              <IconButton
-                size="small"
-                style={{ color: theme.palette.primary.contrastText }}
-                onClick={() => {
-                  triggerViewer();
-                  triggerDialog(true, event);
-                }}
-              >
-                <EditRoundedIcon />
-              </IconButton>
-              {!deleteConfirm && (
-                <IconButton
-                  size="small"
-                  style={{ color: theme.palette.primary.contrastText }}
-                  onClick={() => setDeleteConfirm(true)}
-                >
-                  <DeleteRoundedIcon />
-                </IconButton>
-              )}
-              <Slide
-                in={deleteConfirm}
-                direction={direction === "rtl" ? "right" : "left"}
-                mountOnEnter
-                unmountOnExit
-              >
-                <div>
-                  <Button
-                    style={{ color: theme.palette.error.main }}
-                    size="small"
-                    onClick={handleConfirmDelete}
-                  >
-                    DELETE
-                  </Button>
-                  <Button
-                    style={{ color: theme.palette.action.disabled }}
-                    size="small"
-                    onClick={() => setDeleteConfirm(false)}
-                  >
-                    CANCEL
-                  </Button>
-                </div>
-              </Slide>
-            </div>
-          </div>
-          {viewerTitleComponent instanceof Function ? (
-            viewerTitleComponent(event)
-          ) : (
-            <Typography style={{ padding: "5px 0" }} noWrap>
-              {event.title}
-            </Typography>
-          )}
-        </div>
+        {
+          viewerTitleComponent && TitleRow
+              ? viewerTitleComponent({
+                event,
+                children: <TitleRow/>
+              })
+              : <TitleRow />
+        }
         <div style={{ padding: "5px 10px" }}>
           <Typography
             style={{ display: "flex", alignItems: "center" }}
