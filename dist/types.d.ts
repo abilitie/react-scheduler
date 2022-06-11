@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { DayProps } from "./views/Day";
 import { StateItem } from "./views/Editor";
 import { MonthProps } from "./views/Month";
@@ -137,7 +137,7 @@ export interface SchedulerProps {
     /**Override viewer title component */
     viewerTitleComponent?: (props: {
         event: ProcessedEvent;
-        children: JSX.Element;
+        TitleRow: React.ElementType;
     }) => React.ElementType;
     /**Resources array to split event views with resources */
     resources: DefaultRecourse[];
