@@ -143,16 +143,30 @@ const EventItem = ({
     );
   }
 
-  const TitleRow = () => (
+  const TitleRow = ({
+    containerStyle,
+    contentStyle,
+    title,
+    ...rest
+  }: {
+    containerStyle?: {};
+    contentStyle?: {};
+    title?: string | JSX.Element;
+  }) => (
     <div
       style={{
         background: event.color || theme.palette.primary.main,
         color: theme.palette.primary.contrastText,
+        ...(containerStyle || {}),
       }}
+      {...rest}
     >
       <div
         className="rs__popper_actions"
-        style={{ justifyContent: !isEditable ? "flex-end" : undefined }}
+        style={{
+          justifyContent: !isEditable ? "flex-end" : undefined,
+          ...(contentStyle || null),
+        }}
       >
         <div>
           <IconButton
@@ -214,9 +228,11 @@ const EventItem = ({
           </Slide>
         </div>
       </div>
-      <Typography style={{ padding: "5px 0" }} noWrap>
-        {event.title}
-      </Typography>
+      {title || (
+        <Typography style={{ padding: "5px 0" }} noWrap component="div">
+          {event.title}
+        </Typography>
+      )}
     </div>
   );
 
@@ -233,7 +249,9 @@ const EventItem = ({
         {viewerTitleComponent && TitleRow ? (
           viewerTitleComponent({
             event,
-            children: <TitleRow />,
+            TitleRow: (props: { containerStyle: {}; contentStyle: {} }) => (
+              <TitleRow {...props} />
+            ),
           })
         ) : (
           <TitleRow />

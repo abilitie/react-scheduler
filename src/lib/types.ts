@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { DayProps } from "./views/Day";
 import { StateItem } from "./views/Editor";
 import { MonthProps } from "./views/Month";
@@ -45,7 +45,7 @@ interface CalendarEvent {
   title: string;
   start: Date;
   end: Date;
-  style?: {}
+  style?: {};
   // description?: string;
 }
 
@@ -137,7 +137,7 @@ export interface SchedulerHelpers {
 }
 export interface SchedulerProps {
   isEditable: boolean;
-  onChangeView?: (newView: string) => void
+  onChangeView?: (newView: string) => void;
   /**Min height of table
    * @default 600
    */
@@ -174,7 +174,10 @@ export interface SchedulerProps {
     | JSX.Element
     | ((fields: FieldProps[], event: ProcessedEvent) => JSX.Element);
   /**Override viewer title component */
-  viewerTitleComponent?:(props: {event: ProcessedEvent, children: JSX.Element}) => React.ElementType;
+  viewerTitleComponent?: (props: {
+    event: ProcessedEvent;
+    TitleRow: React.ElementType;
+  }) => React.ElementType;
   /**Resources array to split event views with resources */
   resources: DefaultRecourse[];
   /**Map resources fields */

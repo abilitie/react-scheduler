@@ -14,9 +14,16 @@ const App = () => {
       // view={liveView}
       dialogMaxWidth="sm"
       // loading={loading}
-      // view="month"
+      view="month"
       events={events}
-      selectedDate={new Date("2021/5/1")}
+      selectedDate={new Date()}
+      // viewerTitleComponent={({ event, TitleRow }) => (
+      //   <TitleRow
+      //     containerStyle={{ backgroundColor: "blue" }}
+      //     contentStyle={{ padding: "20px" }}
+      //     title={<h2>"Steve"</h2>}
+      //   />
+      // )}
       // height={800}
       // week={{
       //   weekDays: [0, 1, 2, 3, 4, 5],
