@@ -1,6 +1,6 @@
 import { useState } from "react";
 import DateProvider from "../hoc/DateProvider";
-import DatePicker from "@mui/lab/DatePicker";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { Button } from "@mui/material";
 import { endOfWeek, format, startOfWeek, addDays } from "date-fns";
 import { WeekProps } from "../../views/Week";
