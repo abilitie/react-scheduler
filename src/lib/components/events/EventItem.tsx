@@ -244,6 +244,11 @@ const EventItem = ({
         : res[idKey] === event[idKey]
     );
 
+    const extraComponent =
+      viewerExtraComponent instanceof Function
+        ? viewerExtraComponent(fields, event)
+        : viewerExtraComponent;
+
     return (
       <PopperInner>
         {viewerTitleComponent && TitleRow ? (
@@ -257,35 +262,37 @@ const EventItem = ({
           <TitleRow />
         )}
         <div style={{ padding: "5px 10px" }}>
-          <Typography
-            style={{ display: "flex", alignItems: "center" }}
-            color="textSecondary"
-            variant="caption"
-            noWrap
-          >
-            <EventNoteRoundedIcon />{" "}
-            {`${format(event.start, "dd MMMM yyyy hh:mm a", {
-              locale: locale,
-            })} - ${format(event.end, "dd MMMM yyyy hh:mm a", {
-              locale: locale,
-            })}`}
-          </Typography>
-          {hasResource.length > 0 && (
-            <Typography
-              style={{ display: "flex", alignItems: "center" }}
-              color="textSecondary"
-              variant="caption"
-              noWrap
-            >
-              <SupervisorAccountRoundedIcon />{" "}
-              {hasResource
-                .map((res) => res[resourceFields.textField])
-                .join(", ")}
-            </Typography>
+          {extraComponent}
+          {!extraComponent && (
+            <>
+              <Typography
+                style={{ display: "flex", alignItems: "center" }}
+                color="textSecondary"
+                variant="caption"
+                noWrap
+              >
+                <EventNoteRoundedIcon />{" "}
+                {`${format(event.start, "dd MMMM yyyy hh:mm a", {
+                  locale: locale,
+                })} - ${format(event.end, "dd MMMM yyyy hh:mm a", {
+                  locale: locale,
+                })}`}
+              </Typography>
+              {hasResource.length > 0 && (
+                <Typography
+                  style={{ display: "flex", alignItems: "center" }}
+                  color="textSecondary"
+                  variant="caption"
+                  noWrap
+                >
+                  <SupervisorAccountRoundedIcon />{" "}
+                  {hasResource
+                    .map((res) => res[resourceFields.textField])
+                    .join(", ")}
+                </Typography>
+              )}
+            </>
           )}
-          {viewerExtraComponent instanceof Function
-            ? viewerExtraComponent(fields, event)
-            : viewerExtraComponent}
         </div>
       </PopperInner>
     );
