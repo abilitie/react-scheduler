@@ -161,78 +161,79 @@ const EventItem = ({
       }}
       {...rest}
     >
-      <div
-        className="rs__popper_actions"
-        style={{
-          justifyContent: !isEditable ? "flex-end" : undefined,
-          ...(contentStyle || null),
-        }}
-      >
-        <div>
-          <IconButton
-            size="small"
-            style={{ color: theme.palette.primary.contrastText }}
-            onClick={() => {
-              triggerViewer();
-            }}
-          >
-            <ClearRoundedIcon color="disabled" />
-          </IconButton>
-        </div>
-        <div style={{ display: "inherit" }}>
-          {isEditable && (
-            <>
-              <IconButton
-                size="small"
-                style={{ color: theme.palette.primary.contrastText }}
-                onClick={() => {
-                  triggerViewer();
-                  triggerDialog(true, event);
-                }}
-              >
-                <EditRoundedIcon />
-              </IconButton>
-              {!deleteConfirm && (
+      <div style={contentStyle || {}}>
+        <div
+          className="rs__popper_actions"
+          style={{
+            justifyContent: !isEditable ? "flex-end" : undefined,
+          }}
+        >
+          <div>
+            <IconButton
+              size="small"
+              style={{ color: theme.palette.primary.contrastText }}
+              onClick={() => {
+                triggerViewer();
+              }}
+            >
+              <ClearRoundedIcon color="disabled" />
+            </IconButton>
+          </div>
+          <div style={{ display: "inherit" }}>
+            {isEditable && (
+              <>
                 <IconButton
                   size="small"
                   style={{ color: theme.palette.primary.contrastText }}
-                  onClick={() => setDeleteConfirm(true)}
+                  onClick={() => {
+                    triggerViewer();
+                    triggerDialog(true, event);
+                  }}
                 >
-                  <DeleteRoundedIcon />
+                  <EditRoundedIcon />
                 </IconButton>
-              )}
-            </>
-          )}
-          <Slide
-            in={deleteConfirm}
-            direction={direction === "rtl" ? "right" : "left"}
-            mountOnEnter
-            unmountOnExit
-          >
-            <div>
-              <Button
-                style={{ color: theme.palette.error.main }}
-                size="small"
-                onClick={handleConfirmDelete}
-              >
-                DELETE
-              </Button>
-              <Button
-                style={{ color: theme.palette.action.disabled }}
-                size="small"
-                onClick={() => setDeleteConfirm(false)}
-              >
-                CANCEL
-              </Button>
-            </div>
-          </Slide>
+                {!deleteConfirm && (
+                  <IconButton
+                    size="small"
+                    style={{ color: theme.palette.primary.contrastText }}
+                    onClick={() => setDeleteConfirm(true)}
+                  >
+                    <DeleteRoundedIcon />
+                  </IconButton>
+                )}
+              </>
+            )}
+            <Slide
+              in={deleteConfirm}
+              direction={direction === "rtl" ? "right" : "left"}
+              mountOnEnter
+              unmountOnExit
+            >
+              <div>
+                <Button
+                  style={{ color: theme.palette.error.main }}
+                  size="small"
+                  onClick={handleConfirmDelete}
+                >
+                  DELETE
+                </Button>
+                <Button
+                  style={{ color: theme.palette.action.disabled }}
+                  size="small"
+                  onClick={() => setDeleteConfirm(false)}
+                >
+                  CANCEL
+                </Button>
+              </div>
+            </Slide>
+          </div>
         </div>
+        {title || (
+          <Typography style={{ padding: "5px 0" }} noWrap component="div">
+            {event.title}
+          </Typography>
+        )}
       </div>
-      {title || (
-        <Typography style={{ padding: "5px 0" }} noWrap component="div">
-          {event.title}
-        </Typography>
-      )}
     </div>
   );
 
