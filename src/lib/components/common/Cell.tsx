@@ -1,5 +1,6 @@
 import { alpha, Button, useTheme } from "@mui/material";
 import { useAppState } from "../../hooks/useAppState";
+import { onClickCell } from "../../types";
 
 interface CellProps {
   start: Date;
@@ -7,6 +8,7 @@ interface CellProps {
   resourceKey: string;
   resourceVal: string | number;
   children?: JSX.Element;
+  onClickCell?: onClickCell;
 }
 
 const Cell = ({
@@ -14,6 +16,7 @@ const Cell = ({
   end,
   resourceKey,
   resourceVal,
+  onClickCell,
   children,
 }: CellProps) => {
   const { triggerDialog, onDrop } = useAppState();
@@ -23,11 +26,21 @@ const Cell = ({
     <Button
       fullWidth
       onClick={() => {
-        triggerDialog(true, {
-          start,
-          end,
-          [resourceKey]: resourceVal,
-        });
+        if (onClickCell) {
+          onClickCell(start, end, resourceKey, resourceVal, () =>
+            triggerDialog(true, {
+              start,
+              end,
+              [resourceKey]: resourceVal,
+            })
+          );
+        } else {
+          triggerDialog(true, {
+            start,
+            end,
+            [resourceKey]: resourceVal,
+          });
+        }
       }}
       onDragOver={(e) => {
         e.currentTarget.style.backgroundColor = alpha(

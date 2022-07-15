@@ -41,10 +41,12 @@ const Month = () => {
     resources,
     resourceFields,
     fields,
-    locale
+    locale,
+    onClickCell,
   } = useAppState();
 
   const { weekStartOn, weekDays, startHour, endHour, cellRenderer } = month!;
+
   const monthStart = startOfMonth(selectedDate);
   const monthEnd = endOfMonth(selectedDate);
   const eachWeekStart = eachWeekOfInterval(
@@ -120,6 +122,8 @@ const Month = () => {
                 start,
                 end,
                 height: CELL_HEIGHT,
+                // resourceKey: field,
+                // resourceVal: resource ? resource[field] : null,
                 onClick: () =>
                   triggerDialog(true, {
                     start,
@@ -134,6 +138,7 @@ const Month = () => {
                 end={end}
                 resourceKey={field}
                 resourceVal={resource ? resource[field] : null}
+                onClickCell={onClickCell}
               />
             )}
 

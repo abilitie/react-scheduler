@@ -46,15 +46,17 @@ const AppState = ({ initial, children }: AppProps) => {
     loading,
     onEventDrop,
     onChangeView,
+    onClickCell,
   } = initial;
+
   const [state, dispatch] = useReducer(stateReducer, initialState(initial));
 
   const handleState = (
     value: SchedulerState[keyof SchedulerState],
     name: keyof SchedulerState
   ) => {
-    if (onChangeView && name === "view" && typeof value === 'string') {
-      onChangeView(value)
+    if (onChangeView && name === "view" && typeof value === "string") {
+      onChangeView(value);
     }
     dispatch({ type: "set", payload: { name, value } });
   };
@@ -218,6 +220,7 @@ const AppState = ({ initial, children }: AppProps) => {
         handleGotoDay,
         confirmEvent,
         onDrop,
+        onClickCell,
       }}
     >
       {children}

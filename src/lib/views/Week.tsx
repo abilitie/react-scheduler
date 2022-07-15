@@ -63,6 +63,7 @@ const Week = () => {
     fields,
     direction,
     locale,
+    onClickCell,
   } = useAppState();
 
   const { weekStartOn, weekDays, startHour, endHour, step, cellRenderer } =
@@ -202,7 +203,7 @@ const Week = () => {
             }`}
             style={{ height: headerHeight }}
           >
-            <TodayTypo date={date} onClick={handleGotoDay} locale={locale}/>
+            <TodayTypo date={date} onClick={handleGotoDay} locale={locale} />
             {renderMultiDayEvents(recousedEvents, date)}
           </span>
         ))}
@@ -273,6 +274,7 @@ const Week = () => {
                       end={end}
                       resourceKey={field}
                       resourceVal={resource ? resource[field] : null}
+                      onClickCell={onClickCell}
                     />
                   )}
                 </span>

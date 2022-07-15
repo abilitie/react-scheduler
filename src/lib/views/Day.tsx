@@ -58,6 +58,7 @@ const Day = () => {
     fields,
     direction,
     locale,
+    onClickCell,
   } = useAppState();
   const { startHour, endHour, step, cellRenderer } = day!;
   const START_TIME = setMinutes(setHours(selectedDate, startHour), 0);
@@ -239,6 +240,7 @@ const Day = () => {
                     end={end}
                     resourceKey={field}
                     resourceVal={resource ? resource[field] : null}
+                    onClickCell={onClickCell}
                   />
                 )}
               </span>

@@ -11,6 +11,17 @@ const App = () => {
   return (
     <Scheduler
       onChangeView={(newView: string) => console.log(newView)}
+      onClickCell={(start, end, resourceKey, resourceVal, launchDialog) => {
+        console.log(
+          "Clicked!",
+          start,
+          end,
+          resourceKey,
+          resourceVal,
+          launchDialog
+        );
+        // launchDialog();
+      }}
       // view={liveView}
       dialogMaxWidth="sm"
       // loading={loading}

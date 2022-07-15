@@ -22,6 +22,7 @@ interface CalendarEvent {
     end: Date;
     style?: {};
 }
+export declare type onClickCell = (start: Date, end: Date, resourceKey: string, resourceVal: string | number, launchDialog: () => void) => void;
 export declare type InputTypes = "input" | "date" | "select" | "hidden";
 export interface FieldInputProps {
     /** Available to all InputTypes */
@@ -102,6 +103,7 @@ export interface SchedulerHelpers {
     onConfirm(event: ProcessedEvent, action: EventActions): void;
 }
 export interface SchedulerProps {
+    onClickCell?: onClickCell;
     isEditable: boolean;
     onChangeView?: (newView: string) => void;
     /**Min height of table

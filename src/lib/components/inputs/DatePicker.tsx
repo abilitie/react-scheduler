@@ -1,6 +1,7 @@
+// @ts-nocheck
 import DateProvider from "../hoc/DateProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import DateTimePicker from "@mui/lab/DateTimePicker";
+import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import { TextField } from "@mui/material";
 
 interface EditorDatePickerProps {
