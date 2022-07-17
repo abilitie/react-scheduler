@@ -43,6 +43,7 @@ const Month = () => {
     fields,
     locale,
     onClickCell,
+    disableCellClick,
   } = useAppState();
 
   const { weekStartOn, weekDays, startHour, endHour, cellRenderer } = month!;
@@ -59,6 +60,8 @@ const Month = () => {
   const daysList = weekDays.map((d) => addDays(eachWeekStart[0], d));
   const CELL_HEIGHT = height / eachWeekStart.length;
   const theme = useTheme();
+
+  console.log("theme", theme);
 
   const fetchEvents = useCallback(async () => {
     try {
@@ -139,6 +142,7 @@ const Month = () => {
                 resourceKey={field}
                 resourceVal={resource ? resource[field] : null}
                 onClickCell={onClickCell}
+                disableCellClick={disableCellClick}
               />
             )}
 

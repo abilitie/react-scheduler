@@ -144,6 +144,7 @@ export interface SchedulerHelpers {
   onConfirm(event: ProcessedEvent, action: EventActions): void;
 }
 export interface SchedulerProps {
+  disableCellClick?: boolean;
   onClickCell?: onClickCell;
   isEditable: boolean;
   onChangeView?: (newView: string) => void;

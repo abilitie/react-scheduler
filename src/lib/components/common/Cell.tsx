@@ -9,6 +9,7 @@ interface CellProps {
   resourceVal: string | number;
   children?: JSX.Element;
   onClickCell?: onClickCell;
+  disableCellClick?: boolean;
 }
 
 const Cell = ({
@@ -17,6 +18,7 @@ const Cell = ({
   resourceKey,
   resourceVal,
   onClickCell,
+  disableCellClick,
   children,
 }: CellProps) => {
   const { triggerDialog, onDrop } = useAppState();
@@ -24,8 +26,16 @@ const Cell = ({
 
   return (
     <Button
+      className={disableCellClick ? "disabledCell" : ""}
+      style={
+        disableCellClick ? { cursor: "default", backgroundColor: "white" } : {}
+      }
+      disableRipple={disableCellClick}
       fullWidth
       onClick={() => {
+        if (disableCellClick) {
+          return;
+        }
         if (onClickCell) {
           onClickCell(start, end, resourceKey, resourceVal, () =>
             triggerDialog(true, {

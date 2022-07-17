@@ -11,23 +11,24 @@ const App = () => {
   return (
     <Scheduler
       onChangeView={(newView: string) => console.log(newView)}
-      onClickCell={(start, end, resourceKey, resourceVal, launchDialog) => {
-        console.log(
-          "Clicked!",
-          start,
-          end,
-          resourceKey,
-          resourceVal,
-          launchDialog
-        );
-        // launchDialog();
-      }}
+      // onClickCell={(start, end, resourceKey, resourceVal, launchDialog) => {
+      //   console.log(
+      //     "Clicked!",
+      //     start,
+      //     end,
+      //     resourceKey,
+      //     resourceVal,
+      //     launchDialog
+      //   );
+      //   // launchDialog();
+      // }}
+      disableCellClick
       // view={liveView}
       dialogMaxWidth="sm"
       // loading={loading}
       view="month"
       events={events}
-      selectedDate={new Date()}
+      // selectedDate={new Date()}
       // viewerTitleComponent={({ event, TitleRow }) => (
       //   <TitleRow
       //     containerStyle={{ backgroundColor: "blue" }}

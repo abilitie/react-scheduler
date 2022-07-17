@@ -47,6 +47,7 @@ const AppState = ({ initial, children }: AppProps) => {
     onEventDrop,
     onChangeView,
     onClickCell,
+    disableCellClick,
   } = initial;
 
   const [state, dispatch] = useReducer(stateReducer, initialState(initial));
@@ -221,6 +222,7 @@ const AppState = ({ initial, children }: AppProps) => {
         confirmEvent,
         onDrop,
         onClickCell,
+        disableCellClick: disableCellClick,
       }}
     >
       {children}

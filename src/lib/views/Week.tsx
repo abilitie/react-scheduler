@@ -64,6 +64,7 @@ const Week = () => {
     direction,
     locale,
     onClickCell,
+    disableCellClick,
   } = useAppState();
 
   const { weekStartOn, weekDays, startHour, endHour, step, cellRenderer } =
@@ -275,6 +276,7 @@ const Week = () => {
                       resourceKey={field}
                       resourceVal={resource ? resource[field] : null}
                       onClickCell={onClickCell}
+                      disableCellClick={disableCellClick}
                     />
                   )}
                 </span>
