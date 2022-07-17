@@ -7,6 +7,7 @@ interface CellProps {
     resourceVal: string | number;
     children?: JSX.Element;
     onClickCell?: onClickCell;
+    disableCellClick?: boolean;
 }
-declare const Cell: ({ start, end, resourceKey, resourceVal, onClickCell, children, }: CellProps) => JSX.Element;
+declare const Cell: ({ start, end, resourceKey, resourceVal, onClickCell, disableCellClick, children, }: CellProps) => JSX.Element;
 export { Cell };
